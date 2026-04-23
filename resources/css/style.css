@@ -1,6 +1,9 @@
 .height-custom{
     min-height: 60vh;
 }
+.height-navbar{
+    min-height: 8vh;
+}
 .card-w{
     width: 18rem;
 }

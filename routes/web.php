@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\RevisorController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,3 +20,16 @@ Route::get('/show/article/{article}', [ArticleController::class, 'show'])->name(
 Route::get('/category/{category}', [ArticleController::class, 'byCategory'])->name('byCategory');
 
 // ------------------------------------------------------------------------------------ End ArticleController -------
+
+
+// RevisorController
+Route::get('/revisor/index', [RevisorController::class, 'index'])->name('revisor.index');
+Route::patch('/accept/{article}', [RevisorController::class, 'accept'])->name('accept');
+Route::patch('/reject/{article}', [RevisorController::class, 'reject'])->name('reject');
+Route::get('/revisor/index', [RevisorController::class, 'index'])->middleware('isRevisor')->name('revisor.index');
+Route::get('/revisor/request', [RevisorController::class, 'becomeRevisor'])->middleware('auth')->name('become.revisor');
+Route::get('/make/request', [RevisorController::class, 'makeRevisor'])->name('make.revisor');
+
+
+
+// ------------------------------------------------------------------------------------ End RevisorController -------

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary height-navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,6 +6,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+
+        {{-- ! Sempre visibile  --}}
         {{-- LINK PER HOMEPAGE --}}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{route('homepage')}}">Home</a>
@@ -25,12 +27,26 @@
             <hr class="dropdown-divider">
             @endif
             @endforeach
-            
           </ul>
-          
         </li>
+
+
+
+        {{--! Visibile solo con accesso effettuato--}}
         
         @auth
+        {{-- REVISORE --}}
+        @if (Auth::user()->is_revisor)
+        <li class="nav-item">
+          <a class="nav-link btn btn-outline-success btn-sm position-relative w-sm-25" href="{{ route('revisor.index') }}">Zona revisore
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ \App\Models\Article::toBeRevisedCount() }}
+
+            </span>
+          </a>
+        </li>
+          
+        @endif
+
         <li class="nav-item dropdown">
           {{-- MESSAGGIO BENVENUTO --}}
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,7 +79,7 @@
       </ul>
     </li>
     
-    
+    {{--! Visibile se non hai effettuato l'accesso ma sparisce appena viene effettuato  --}}
     @else
     
     {{-- LINK PER LOGIN--}}
