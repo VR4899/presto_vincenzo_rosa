@@ -1,4 +1,4 @@
-<x-layout title="Homepage">
+<x-layout title="{{ __('ui.home_title') }} ">
 {{-- Messaggio di errore --}}
     @if(session()->has('errorMessage'))
         <div class="alert alert-danger text-center shadow rounded w-50">
@@ -21,7 +21,7 @@
         @empty
         <div class="col-12">
             <h3 class="text-center">
-                Non sono stati creati articoli
+               {{ __('ui.no_articles') }}
             </h3>
         </div>
             

@@ -10,15 +10,15 @@
         {{-- ! Sempre visibile  --}}
         {{-- LINK PER HOMEPAGE --}}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('homepage')}}">Home</a>
+          <a class="nav-link active" aria-current="page" href="{{route('homepage')}}">{{ __('ui.home') }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('article.index')}}">Tutti gli articoli</a>
+          <a class="nav-link active" aria-current="page" href="{{route('article.index')}}">{{ __('ui.all_articles') }}</a>
         </li>
 
         {{-- Categorie --}}
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorie</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ __('ui.category') }}</a>
           <ul class="dropdown-menu">
             @foreach ($categories as $category)
             <li>
@@ -39,7 +39,7 @@
         {{-- REVISORE --}}
         @if (Auth::user()->is_revisor)
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-success btn-sm position-relative w-sm-25" href="{{ route('revisor.index') }}">Zona revisore
+          <a class="nav-link btn btn-outline-success btn-sm position-relative w-sm-25" href="{{ route('revisor.index') }}"> {{ __('ui.revisor_zone') }}
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ \App\Models\Article::toBeRevisedCount() }}
 
             </span>
@@ -51,7 +51,7 @@
         <li class="nav-item dropdown">
           {{-- MESSAGGIO BENVENUTO --}}
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Ciao,{{ Auth::user()->name }}
+            {{ __('ui.hello') }},{{ Auth::user()->name }}
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('create.article') }}">crea</a></li>
@@ -103,6 +103,11 @@
         <button type="submit" class="input-group-text btn btn-outline-success" id="basic.addon2">Search</button>
       </div>
     </form>
+
+    <x-_locale lang="it"/>
+    <x-_locale lang="uk"/>
+    <x-_locale lang="es"/>
+
     
   </ul>
 </div>
