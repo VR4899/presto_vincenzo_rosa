@@ -1,19 +1,20 @@
 <x-layout title="{{ __('ui.detail_title') }} {{ $article->title }}">
-    <div class="row height-custom justify-content-center aligt-item-center text-center">
+    <div class="row height-custom justify-content-center aligt-items-center text-center">
         <div class="col-12 col-md-6 mb-3">
+          @if ($article->images->count() > 0)
+              
+         
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://picsum.photos/1001" class="d-block w-100" alt="immagine casuale">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/1002" class="d-block w-100" alt="immagine casuale">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/1003" class="d-block w-100" alt="immagine casuale">
-                    </div>
+                     @foreach ($article->images as $key => $image)
+                         <div class="carousel-item @if($loop->first) active @endif">
+                            <img src="{{ Storage::url($image->path) }}" class="d-block w-100 rounded shadow" alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title}}">
+                         </div>
+                     @endforeach
+                   
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                @if ($article->images->count() > 1)
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
@@ -21,7 +22,11 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+                @endif
             </div>
+            @else
+            <img src="https://picsum.photos/300" alt="Nessuna foto e stata inserita dall'utente">
+         @endif     
         </div>
         <div class="col-12 col-md-6 mb-3 height-custom text-center">
             <h2 class="display-5"><span class="fw-bold">{{ __('ui.title') }}:</span> {{$article->title}} </h2>
