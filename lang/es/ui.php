@@ -19,6 +19,7 @@ return [
     'home_title' => 'Bienvenido a la página principal',
 
     // Artículos
+    'author' => 'autor',
     'latest_articles' => 'Últimos artículos',
     'no_articles' => 'No hay artículos disponibles',
     'read_more' => 'Leer más',

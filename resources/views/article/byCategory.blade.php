@@ -8,7 +8,7 @@
 
         @empty
             <div class="col-12 text-center">
-                <h3>Non sono ancora stati creati articoli in questa categoria</h3>
+                <h3> {{ __('ui.no_articles') }}</h3>
 
                 @auth
                     <a class="btn btn-dark my-5" href="{{ route('create.article') }}">

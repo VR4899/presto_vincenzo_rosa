@@ -7,7 +7,7 @@
         @empty
         <div class="col-12">
             <h3 class="text-center">
-                Non sono stati creati articoli
+                {{ __('ui.no_articles') }}
             </h3>
         </div>
             

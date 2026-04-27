@@ -9,7 +9,7 @@
         @empty
         <div class="col-12">
             <h3 class="text-center">
-                Nessun articolo corrisponde alla tua ricerca.
+                 {{ __('ui.no_articles') }}
             </h3>
         </div>
             

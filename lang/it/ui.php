@@ -27,6 +27,7 @@ return [
     'cta' => 'Esplora articoli',
 
     // Articoli
+    'author' => 'Autore',
     'latest_articles' => 'Ultimi articoli',
     'no_articles' => 'Nessun articolo disponibile',
     'read_more' => 'Leggi di più',

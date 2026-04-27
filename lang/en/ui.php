@@ -31,6 +31,7 @@ return [
     'home_title' => 'Welcome to the Homepage',
 
     // Articles
+    'author' => 'Author',
     'latest_articles' => 'Latest articles',
     'no_articles' => 'No articles available',
     'read_more' => 'Read more',
