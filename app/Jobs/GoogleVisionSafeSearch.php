@@ -29,7 +29,10 @@ class GoogleVisionSafeSearch implements ShouldQueue
      * Execute the job.
      */
     public function handle(): void
+  
     {
+  
+          
         $i = Image::find($this->article_image_id);
         if (!$i){
             return;
@@ -37,7 +40,7 @@ class GoogleVisionSafeSearch implements ShouldQueue
     
     $image = file_get_contents(storage_path('app/public/' . $i->path));
      $googleVisionClient = new ImageAnnotatorClient();
-    putenv('GOOGLE_APPLICATION_CREDENTIALS=' .base_path('google_credential.json') );
+    putenv('GOOGLE_APPLICATION_CREDENTIALS=' .base_path('google_credential_aprile2026.json') );
 
    
     $google_image = new VisionImage([

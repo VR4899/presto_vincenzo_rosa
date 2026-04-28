@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Livewire;
-
+use App\Jobs\RemoveFaces;
 use App\Jobs\GoogleVisionLabelImage;
 use App\Jobs\GoogleVisionSafeSearch;
-use App\Jobs\RemoveFaces;
+
 use App\Jobs\ResizeImage;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
