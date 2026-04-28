@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Image;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
+use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\Feature;
 use Google\Cloud\Vision\V1\Feature\Type;
@@ -35,9 +36,10 @@ class GoogleVisionSafeSearch implements ShouldQueue
         }
     
     $image = file_get_contents(storage_path('app/public/' . $i->path));
-    putenv('GOOGLE_APPLICATION_CREDENTIALS=' . base_path('google_credential.json') );
+     $googleVisionClient = new ImageAnnotatorClient();
+    putenv('GOOGLE_APPLICATION_CREDENTIALS=' .base_path('google_credential.json') );
 
-    $googleVisionClient = new ImageAnnotatorClient();
+   
     $google_image = new VisionImage([
         'content'  => $image]);
     
@@ -48,17 +50,20 @@ class GoogleVisionSafeSearch implements ShouldQueue
     $request->setImage($google_image);
     $request->setFeatures([$googleFeature]);
 
+    $batchRequest = new BatchAnnotateImagesRequest();
+    $batchRequest->setRequests([$request]);
+
     $responseBatch = $googleVisionClient->batchAnnotateImages($batchRequest);
 
     $response = $responseBatch->getResponses();
     $googleVisionClient->close();
     
-    $safeSeacrchAnnotation = $response[0]->getSafeSearchAnnotation();
-    $adult = $safeSeacrchAnnotation->getAdult();
-    $spoof = $safeSeacrchAnnotation->getSpoof();
-    $medical = $safeSeacrchAnnotation->getMedical();
-    $violence = $safeSeacrchAnnotation->getViolence();
-    $racy = $safeSeacrchAnnotation->getRacy();
+    $safeSearchAnnotation = $response[0]->getSafeSearchAnnotation();
+    $adult = $safeSearchAnnotation->getAdult();
+    $spoof = $safeSearchAnnotation->getSpoof();
+    $medical = $safeSearchAnnotation->getMedical();
+    $violence = $safeSearchAnnotation->getViolence();
+    $racy = $safeSearchAnnotation->getRacy();
 
     $likeliHoodName = [
         'text-secondary bi bi-circle-fill',
@@ -66,7 +71,7 @@ class GoogleVisionSafeSearch implements ShouldQueue
         'text-success bi bi-check-circle-fill',
         'text-warning bi bi-exclamation-circle-fill',
         'text-warning bi bi-exclamation-circle-fill',
-        'text-danger bi bi-dasch-circle-fill'
+        'text-danger bi bi-dash-circle-fill'
     ];
 
     $i->adult = $likeliHoodName[$adult];

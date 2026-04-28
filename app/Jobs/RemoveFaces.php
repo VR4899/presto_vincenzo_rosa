@@ -11,14 +11,18 @@ use Google\Cloud\Vision\V1\Feature\Type;
 use Google\Cloud\Vision\V1\Image as VisionImage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Spatie\Image\Enums\AlignPosition;
+use Spatie\Image\Enums\Fit;
+use Spatie\Image\Image as SpatieImage;
 
-class GoogleVisionLabelImage implements ShouldQueue
+class RemoveFaces implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new job instance.
      */
+
     private $article_image_id;
 
     public function __construct($article_image_id)
@@ -36,16 +40,18 @@ class GoogleVisionLabelImage implements ShouldQueue
             return;
         }
 
-        $image = file_get_contents(storage_path('app/public/' . $i->path));
+        
+        $src = storage_path('app/public/' . $i->path);
+      
+        $image = file_get_contents($src);
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' .base_path('google_credential.json'));
 
         $googleVisionClient = new ImageAnnotatorClient();
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' .base_path('google_credential.json') );
-
         $google_image = new VisionImage([
-        'content'  => $image]);
+            'content'  => $image]);
         
         $googleFeature = new Feature();
-        $googleFeature-> setType(Type::LABEL_DETECTION);
+        $googleFeature-> setType(Type::FACE_DETECTION);
 
         $request = new AnnotateImageRequest();
         $request->setImage($google_image);
@@ -54,23 +60,34 @@ class GoogleVisionLabelImage implements ShouldQueue
         $batchRequest = new BatchAnnotateImagesRequest();
         $batchRequest->setRequests([$request]);
 
-
         $responseBatch = $googleVisionClient->batchAnnotateImages($batchRequest);
         $response = $responseBatch->getResponses()[0];
+        $faces = $response->getFaceAnnotations();
 
-        $labels = $response->getLabelAnnotations();
-
-        if($labels){
-            $result = [];
-            foreach($labels as $label){
-                $result[] = $label->getDescription();
+        foreach ($faces as $face){
+            $vertices = $face->getBoundingPoly()->getVertices();
+            $bounds=[]; 
+            foreach($vertices as $vertex){
+                $bounds[] = [$vertex->getX(),$vertex->getY()]; 
             }
-            $i->labels = $result;
-            $i->save();
 
+            $w = $bounds[2][0] - $bounds[0][0];
+            $h = $bounds[2][1] - $bounds[0][1];
+
+            $image = SpatieImage::load($src);
+
+            $image->watermark(
+                base_path('resources/img/face.png'),
+                AlignPosition::TopLeft,
+                paddingX: $bounds[0][0],
+                paddingY: $bounds[0][1],
+                width: $w,
+                height: $h,
+                fit: Fit::Stretch
+
+            );
+            $image->save($src);
         }
         $googleVisionClient->close();
-
-
     }
 }
