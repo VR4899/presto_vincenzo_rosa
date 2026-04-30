@@ -10,11 +10,12 @@
 
     <x-navbar/>
     <header class="masthead">
+      
   <div class="container-fluid masthead ">
     <div class="row h-75 align-items-center justify-content-center  ">
       <div class="col-12 text-center">
-        <h1 class="fw-light titleFonts">{{$title}}</h1>
-   
+        <h1 class="fw-light text-white text-decoration-underline   titleFonts ">{{$title}}</h1>
+    
       </div>
     </div>
     

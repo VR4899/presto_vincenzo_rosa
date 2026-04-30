@@ -1,35 +1,34 @@
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-body-tertiary text-muted">
   <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+  <section class="d-flex justify-content-center   border-bottom">
     <!-- Left -->
-    <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
-    </div>
+   
     <!-- Left -->
 
     <!-- Right -->
     <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
+      <a href="https://www.facebook.com" class="me-4 text-reset">
+        <img src="{{ asset('img/facebook_logo.png') }}" class="bi icon-custom icon-grande">
+
       </a>
       <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
+       <img src="{{ asset('img/google_logo.png') }}" class="bi icon-custom icon-grande">
       </a>
       <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
+         <img src="{{ asset('img/instagram_logo.png') }}" class="bi icon-custom icon-grande">
+
       </a>
       <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
+         <img src="{{ asset('img/linkedin_logo.png') }}" class="bi icon-custom icon-grande ">
       </a>
       <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
+         <img src="{{ asset('img/github_logo.png') }}" class="bi icon-custom icon-grande">
+       
       </a>
     </div>
     <!-- Right -->
+
   </section>
   <!-- Section: Social media -->
 
@@ -54,18 +53,13 @@
         <div class="col-md-3 col-lg-3 col-xl-6 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
-            Products
+            Lavora con noi
           </h6>
           <div class=""> 
             <h5>Vuoi diventare revisore?</h5>
             <p>Cliccando il bottone sottostante farai richiesta al nostro Admin</p>
             <a href="{{ route('become.revisor') }}" class="btn btn-success">Diventa revisore</a>
           </div>
-          <p>
-            <a href="#!" class="text-reset">React</a>
-          </p>
-       
-          
         </div>
         <!-- Grid column -->
 
@@ -98,3 +92,5 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
+
+
