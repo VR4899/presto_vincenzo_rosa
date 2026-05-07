@@ -7,11 +7,11 @@
             </div>
 
         @empty
-            <div class="col-12 text-center">
+            <div class="col-12 text-center text-white">
                 <h3> {{ __('ui.no_articles') }}</h3>
 
                 @auth
-                    <a class="btn btn-dark my-5" href="{{ route('create.article') }}">
+                    <a class="btn btn-light my-5" href="{{ route('create.article') }}">
                         Pubblica un articolo
                     </a>
                 @endauth

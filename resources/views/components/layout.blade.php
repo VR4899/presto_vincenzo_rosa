@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Document</title>
+
+    
+
 </head>
 <body>
 
     <x-navbar/>
-    <header class="masthead">
+    <header class="masthead m-5">
       
   <div class="container-fluid masthead ">
     <div class="row h-75 align-items-center justify-content-center  ">
-      <div class="col-12 text-center">
+      <div class="col-12 text-center ">
         <h1 class="fw-light text-white text-decoration-underline   titleFonts ">{{$title}}</h1>
     
       </div>

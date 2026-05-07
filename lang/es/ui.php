@@ -40,6 +40,8 @@ return [
     'description' => 'Descripción',
     'previous' => 'Anterior',
     'next' => 'Siguiente',
+    'article_images' => 'Imágenes del artículo',
+
 
     // Footer
     'footer_text' => 'Todos los derechos reservados',

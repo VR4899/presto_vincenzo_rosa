@@ -51,6 +51,7 @@ return [
     'description' => 'Description',
     'previous' => 'Previous',
     'next' => 'Next',
+    'article_images' => 'Article images',
      
 
     // Footer

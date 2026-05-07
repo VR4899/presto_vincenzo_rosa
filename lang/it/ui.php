@@ -49,6 +49,7 @@ return [
     'price' => 'Prezzo',
     'description' => 'Descrizione',
     'previous' => 'Precedente',
-    'next' => 'Successivo', 
+    'next' => 'Successivo',
+    'article_images' => "Immagini dell'articolo",
 
 ];

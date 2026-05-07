@@ -1,7 +1,7 @@
-<x-layout title="Tutti gli articoli">
+<x-layout title=" {{ __('ui.all_articles') }}">
      <div class="row height-custom justify-content-center align-items-center py-5">
         @forelse ($articles as $article)
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mt-5">
                 <x-card :article="$article"/>
             </div>
         @empty
